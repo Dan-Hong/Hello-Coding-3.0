@@ -1,0 +1,71 @@
+<!doctype html><html><head></head><body><h2>Current Round</h2>
+<p id="playerChoice">Player: 👊</p>
+<p id="computerChoice">Computer: 👊</p>
+
+<button class="playerHand">👊</button>
+<button class="playerHand">✋</button>
+<button class="playerHand">✌️</button>
+
+<h2>Score</h2>
+<div id="playerScore">Player: 0</div>
+<div id="computerScore">Computer: 0</div><script type="text/javascript">let buttons = document.querySelectorAll(".playerHand");
+
+buttons.forEach(
+    button => {
+      button.addEventListener("click", startRound);
+    }
+);
+
+let player = document.getElementById("playerChoice");
+let computer = document.getElementById("computerChoice");
+
+let hands = ["👊", "✋", "✌️"];
+
+let playerScore = 0;
+let computerScore = 0;
+let playerScoreDiv = document.getElementById("playerScore");
+let computerScoreDiv = document.getElementById("computerScore");
+
+function startRound() {
+  let computerChoice = Math.floor(Math.random() * 3);
+  computer.textContent = `Computer: ${hands[computerChoice]}`;
+  // console.log(computerChoice);
+  player.textContent = `Player: ${this.textContent}`;
+
+  if (this.textContent === "👊") {
+    if (computerChoice === 1) { //✋
+      computerScore +=1;
+    }
+    else if (computerChoice === 2) { //✌️
+      playerScore = playerScore +1;
+    }
+    else
+      console.log("nobody won");
+  }
+  else if (this.textContent === "✋") {
+    if (computerChoice === 0) { //👊
+      playerScore++;
+    }
+    else if (computerChoice === 2) { //✌️
+      computerScore++;
+    }
+    else
+      console.log("nobody won");
+  }
+  else {
+    if (computerChoice === 0) { //👊
+      computerScore++;
+    }
+    else if (computerChoice === 1) { //✌✋
+      playerScore++;
+    }
+    else {
+      console.log("nobody won");
+    }
+  }
+  playerScoreDiv.textContent = `Player: ${playerScore}`;
+  computerScoreDiv.textContent = `Computer: ${computerScore}`;
+}
+
+console.log(buttons);
+console.log("Hello");</script></body><html>
